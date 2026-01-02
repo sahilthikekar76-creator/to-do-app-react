@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaEdit,FaTrash,FaSave}from "react-icons/fa";
 function TodoItem({todo,toggleTodo,deleteTodo,updateTodo}){
     const [isEditing, setIsEditing] = useState(false);
     const [editText, setEditText] = useState(todo.text);
@@ -20,13 +21,13 @@ function TodoItem({todo,toggleTodo,deleteTodo,updateTodo}){
             : 
             (<span className={`flex-1 transition-all duration-300 ${todo.completed ? 'line-through text-gray-400' : 'text-gray-800'}`}>{todo.text}</span> )} 
             {isEditing ?
-            (<button type="button" onClick={handleSave} className="px-3 py-1 bg-green-500 text-white rounded
-             hover:bg-green-600 transition">Save</button>)
+            (<button type="button" onClick={handleSave} className=" flex items-center gap-2 px-3 py-1 bg-green-500 text-white rounded
+             hover:bg-green-600 transition"><FaSave/>Save</button>)
              :
-             (<><button type="button" onClick={()=>setIsEditing(true)} className="px-3 py-1 bg-yellow-500
-              text-white rounded hover:bg-yellow-600 transition">Edit</button>
-            <button type="button" onClick={()=>deleteTodo(todo.id)} className="px-3 py-1 bg-red-500 text-white rounded
-             hover:bg-red-600 transition">Delete</button></>)}      
+             (<><button type="button" onClick={()=>setIsEditing(true)} className=" flex items-center gap-2 px-3 py-1 bg-yellow-500
+              text-white rounded hover:bg-yellow-600 transition"><FaEdit/>Edit</button>
+            <button type="button" onClick={()=>deleteTodo(todo.id)} className="flex items-center gap-2 px-3 py-1 bg-red-500 text-white rounded
+             hover:bg-red-600 transition"><FaTrash/>Delete</button></>)}      
             
         </div>
         </>
