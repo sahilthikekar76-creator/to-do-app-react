@@ -3,7 +3,10 @@ import TodoList from './components/TodoList';
 import Filterbar from './components/Filterbar';
 import { FaSearch,FaBroom } from 'react-icons/fa';
 import { PiListChecksFill } from "react-icons/pi";
-
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import MainLayout from './layout/MainLayout';
 import { useState,useEffect } from 'react'
 function App() {
   const [todos,setTodos]=useState(()=>{
@@ -57,7 +60,14 @@ const remaining = todos.filter(todo => !todo.completed).length;
 
   return (
     <>
-    <div className="flex-1 p-12 bg-gradient-to-br from-indigo-900 via-violet-800 to-purple-700  min-h-screen  flex items-centre justify-centre">
+    <BrowserRouter>
+    <Routes>
+      <Route element={<MainLayout/>}>
+      <Route path='/signup' element={<Signup/>}/>
+    <Route path='/Login' element={<Login/>}/>
+    <Route path='/' 
+    element={
+          <div className="flex-1 p-12 bg-gradient-to-br from-indigo-900 via-violet-800 to-purple-700  min-h-screen  flex items-centre justify-centre">
       <div className='grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-44 ml-12 items-center'>     
         <div className='bg-white w-full max-w-xl min-h-fit ml-28 my-auto rounded-xl shadow-2xl'>
         <div className="max-w-2xl mx-auto p-6 tracking-tight text-slate-800  transition-all duration-700 ease-out hover:translate-x-2 hover:text-violet-700 flex justify-start items-center gap-3">
@@ -104,6 +114,11 @@ const remaining = todos.filter(todo => !todo.completed).length;
       </div>
       
     </div>
+    }/>
+    </Route>
+    </Routes>
+    
+    </BrowserRouter>
     
     </>
   )
